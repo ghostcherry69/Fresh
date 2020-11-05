@@ -1,0 +1,40 @@
+<header>
+  <div class="container">
+    <nav class='nav navbar-nav navbar-left' >
+      <div class="header_logo">
+        <span style="color: black; font-size: 20px;">LOGO</span>
+      </div>
+    </nav>
+
+      <ul class="nav navbar-nav navbar-right">
+        <% if angler_signed_in? %>
+           <li class="header_list_item">
+            <%= link_to 'TOP', angler_top_path %>
+          </li>
+          <li class="header_list_item">
+            <%= link_to '商品一覧', angler_products_path %>
+          </li>
+          <li class="header_list_item">
+            <%= link_to "注文履歴一覧", angler_orders_path(current_angler) %>
+          </li>
+          <li class="header_list_item">
+            <%= link_to "ログアウト", destroy_angler_session_path, method: :delete %>
+          </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <% else %>
+          <li class="header_list_item">
+            <%= link_to 'LOGO', root_path %>
+          </li>
+          <li class="header_list_item">
+            <%= link_to "商品一覧", angler_products_path %>
+          </li>
+          <li class="header_list_item">
+            <%= link_to "ログイン", new_angler_session_path %>
+          </li>
+
+        <% end %>
+      </ul>
+  </div>
+</header>

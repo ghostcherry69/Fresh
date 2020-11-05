@@ -1,0 +1,132 @@
+<%= render 'layouts/userheader' %>
+
+  <main>
+    <h2>新規会員登録</h2>
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "users/shared/error_messages", resource: resource %>
+
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+          <div class="field">
+            <tr>
+              <td>
+              <label>名前</label>
+              </td>
+              <td>
+              (姓)<%= f.text_field :surname, autofocus: true, autocomplete: "surname" %>
+              </td>
+              <td>
+              (名)<%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+              </td>
+            </tr>
+          </div>
+
+          <div class="field">
+            <tr>
+              <td>
+              <label>フリガナ</label>
+              </td>
+              <td>
+              (セイ)<%= f.text_field :surname_phonetic, autofocus: true, autocomplete: "surname_phonetic" %>
+              </td>
+              <td>
+              (メイ)<%= f.text_field :name_phonetic, autofocus: true, autocomplete: "name_phonetic" %>
+              </td>
+            </tr>
+          </div>
+
+          <div class="field">
+            <tr>
+              <td>
+              <label>メールアドレス</label>
+              </td>
+              <td>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+              </td>
+            </tr>
+          </div>
+
+          <div class="field">
+            <tr>
+              <td>
+              <label>郵便番号(ハイフンなし)</label>
+              </td>
+              <td>
+              <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
+              </td>
+            </tr>
+          </div>
+
+          <div class="field">
+            <tr>
+              <td>
+              <label>住所</label>
+              </td>
+              <td>
+              <%= f.text_field :street_address, autofocus: true, autocomplete: "street_address" %>
+              </td>
+            </tr>
+          </div>
+
+          <div class="field">
+            <tr>
+              <td>
+              <label>電話番号(ハイフンなし)</label>
+              </td>
+              <td>
+              <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number" %>
+              </td>
+            </tr>
+          </div>
+
+          <div class="field">
+            <tr>
+              <td>
+              <label>パスワード(6文字以上)</label>
+              </td>
+              <td>
+              <%= f.password_field :password, autocomplete: "new-password" %>
+              </td>
+            </tr>
+          </div>
+
+          <div class="field">
+            <tr>
+              <td>
+              <label>パスワード(確認用)</label><br/>
+              </td>
+              <td>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+              </td>
+            </tr>
+          </div>
+
+          <div class="actions">
+            <tr>
+              <td>
+              <%= f.submit "新規登録" %>
+              </td>
+            </tr>
+          </div>
+          </tbody>
+        </table>
+      <% end %>
+
+
+      <h2>既に登録済みの方</h2>
+        <p>
+          <string><%= link_to "こちら", new_user_session_path %></string>からログインして下さい。
+        </p>
+  </main>
+
+<%= render 'layouts/userfooter' %>
