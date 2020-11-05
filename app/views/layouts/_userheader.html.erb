@@ -1,0 +1,52 @@
+<header>
+  <div class="container">
+    <nav class='nav navbar-nav navbar-left' >
+      <div class="header_logo">
+        <span style="color: black; font-size: 20px;">LOGO</span>
+      </div>
+    </nav>
+
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li class="header_list_item">
+            ようこそ！<%= current_user.full_users_name %>様
+          </li>
+          <li class="header_list_item">
+            <%= link_to 'TOP', root_path %>
+          </li>
+          <li class="header_list_item">
+            <%= link_to 'マイページ', user_profile_path(current_user) %>
+          </li>
+          <li class="header_list_item">
+            <%= link_to '商品一覧', user_products_path %>
+          </li>
+          <li class="header_list_item">
+            <%= link_to "カート", user_product_in_carts_path %>
+          </li>
+          <li class="header_list_item">
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <% else %>
+          <li class="header_list_item">
+            <%= link_to 'LOGO', "#" %>
+          </li>
+          <li class="header_list_item">
+            <%= link_to 'About', "#" %>
+          </li>
+          <li class="header_list_item">
+            <%= link_to "商品一覧", user_products_path %>
+          </li>
+          <li class="header_list_item">
+            <%= link_to "新規登録", new_user_registration_path %>
+          </li>
+          <li class="header_list_item">
+            <%= link_to "ログイン", user_session_path %>
+          </li>
+        <% end %>
+      </ul>
+   　</nav>
+   </div>
+  </header>

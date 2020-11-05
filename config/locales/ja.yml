@@ -1,0 +1,37 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      angler: 釣り人
+      genre: ジャンル
+      product: 商品
+      delivery_destinations: 配送先
+    attributes:
+      user:
+        surname: 姓
+        name: 名
+        surname_phonetic: 姓(フリガナ)
+        name_phonetic: 名(フリガナ)
+        postal_code: 郵便番号
+        street_address: 住所
+        phone_number: 電話番号
+      angler:
+        surname: 姓
+        name: 名
+        surname_phonetic: 姓(フリガナ)
+        name_phonetic: 名(フリガナ)
+        postal_code: 郵便番号
+        street_address: 住所
+        phone_number: 電話番号
+      genre:
+        name: ジャンル名
+      product:
+        name: 商品名
+        genre: ジャンル
+        image: 商品画像
+        explanation: 商品説明
+        price_excluding_tax: 税抜き価格
+      delivery_destinations:
+        postal_code: 郵便番号
+        street_address: 住所
+        name: 名前
