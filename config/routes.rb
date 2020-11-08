@@ -18,28 +18,29 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'top' => 'homes#top'
+    resources :anglers, only: [:index, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
-    resources :products, only: [:new, :create, :index, :show, :edit, :update]
-    resources :users, only: [:index, :show, :edit, :update]
-    resources :orders, only: [:index, :show, :update]
     resources :ordered_products, only: [:update]
+    resources :products, only: [:new, :create, :index, :show, :edit, :update]
+    resources :orders, only: [:index, :show, :update]
+    resources :users, only: [:index, :show, :edit, :update]
   end
 
-  namespace :angler do
+  namespace :seller do
     get 'top' => 'homes#top'
+    resources :ordered_products, only: [:update]
+    resources :orders, only: [:index, :show, :update]
     resources :products, only: [:new, :create, :index, :show, :edit, :update, :destroy]
     resources :users, only: [:index, :show, :edit, :update]
-    resources :orders, only: [:index, :show, :update]
-    resources :ordered_products, only: [:update]
   end
 
-  namespace :user do
+  namespace :public do
     get 'top' => 'homes#top'
-    resources :products, only: [:index, :show]
-    resources :product_in_carts, only: [:index, :create, :update, :destroy]
-    resources :orders, only: [:index, :create, :show, :new]
-    resources :profiles, only: [:show, :edit, :update]
     resources :delivery_destinations, only: [:new, :create, :edit, :update, :destroy]
+    resources :orders, only: [:index, :create, :show, :new]
+    resources :product_in_carts, only: [:index, :create, :update, :destroy]
+    resources :products, only: [:index, :show]
+    resources :users, only: [:show, :edit, :update]
     post 'confirm' => 'orders#confirm'
     get 'thanks' => 'orders#thanks'
     get 'confirm' => 'profiles#confirm'

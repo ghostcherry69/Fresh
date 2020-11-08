@@ -1,0 +1,130 @@
+<%= render 'layouts/userheader' %>
+
+  <main>
+    <h2>登録情報編集</h2>
+
+      <% if user_signed_in? && @user.id == current_user.id %>
+        <%= form_with model: [:piblic, @user], url:{controloler: :user, action: :update}, local: true do |f| %>
+
+        <div class="field_with_errors">
+          <% if @user.errors.any? %>
+            <h3 class="error"><%= @user.errors.count %>件のエラーがあります。</h3>
+            <ul>
+              <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <div class="field">
+                <tr>
+                  <td>
+                    <label>名前</label>
+                  </td>
+                  <td>
+                    (姓)<%= f.text_field :surname, autofocus: true, autocomplete: "surname" %>
+                  </td>
+                  <td>
+                    (名)<%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+                  </td>
+                </tr>
+              </div>
+
+              <div class="field">
+                <tr>
+                  <td>
+                    <label>フリガナ</label>
+                  </td>
+                  <td>
+                    (セイ)<%= f.text_field :surname_phonetic, autofocus: true, autocomplete: "surname_phonetic" %>
+                  </td>
+                  <td>
+                    (メイ)<%= f.text_field :name_phonetic, autofocus: true, autocomplete: "name_phonetic" %>
+                  </td>
+                </tr>
+              </div>
+
+              <div class="field">
+                <tr>
+                  <td>
+                    <label>メールアドレス</label>
+                  </td>
+                  <td>
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                  </td>
+                </tr>
+              </div>
+
+              <div class="field">
+                <tr>
+                  <td>
+                    <label>郵便番号(ハイフンなし)</label>
+                  </td>
+                  <td>
+                    <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
+                  </td>
+                </tr>
+              </div>
+
+              <div class="field">
+                <tr>
+                  <td>
+                    <label>住所</label>
+                  </td>
+                  <td>
+                    <%= f.text_field :street_address, autofocus: true, autocomplete: "street_address" %>
+                  </td>
+                </tr>
+              </div>
+
+              <div class="field">
+                <tr>
+                  <td>
+                    <label>電話番号(ハイフンなし)</label>
+                  </td>
+                  <td>
+                    <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number" %>
+                  </td>
+                </tr>
+              </div>
+
+              <div class="field">
+                <tr>
+                  <td>
+                    <label>パスワード</label>
+                  </td>
+                  <td>
+                    <%= f.text_field :password, autofocus: true, autocomplete: "password" %>
+                  </td>
+                </tr>
+              </div>
+
+
+              <div class="actions">
+                <tr>
+                  <td>
+                  <%= f.submit "編集内容を保存する" %>
+                  </td>
+                  <td>
+                    <%= link_to "退会する", public_confirm_path %>
+                  </td>
+                </tr>
+              </div>
+            </tbody>
+          </table>
+        <% end %>
+      <% end %>
+  </main>
+
+<%= render 'layouts/userfooter' %>

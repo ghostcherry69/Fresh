@@ -1,0 +1,2 @@
+module Public::ProductInCartsHelper
+end

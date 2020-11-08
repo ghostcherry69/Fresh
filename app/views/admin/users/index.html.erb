@@ -1,0 +1,33 @@
+<%= render 'layouts/adminheader' %>
+
+  <main>
+    <h2>会員一覧</h2>
+
+      <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>会員ID</th>
+            <th>氏名</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+          </tr>
+          </thead>
+
+          <tbody>
+            <% @users.each do |user| %>
+            <tr>
+              <td><%= user.id %></td>
+              <td><%= link_to user.full_users_name, admin_user_path(user.id) %></td>
+              <td><%= user.email %></td>
+            <% if user.deleted_at == nil %>
+              <td>有効</td>
+            <% else %>
+              <td>退会済</td>
+            <% end %>
+            </tr>
+            <% end %>
+          </tbody>
+      </table>
+  </main>
+
+<%= render 'layouts/adminfooter' %>

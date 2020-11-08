@@ -21,7 +21,7 @@ class Anglers::SessionsController < Devise::SessionsController
   # protected
 
   def after_sign_in_path_for(resource)
-      angler_top_path
+      seller_top_path
   end
 
   def after_sign_out_path_for(resource)

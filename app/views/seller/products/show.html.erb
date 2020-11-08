@@ -1,0 +1,53 @@
+<%= render 'layouts/anglerheader' %>
+
+  <main>
+    <h2>商品詳細</h2>
+
+      <% if flash[:notice] %>
+        <div class="flash">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-6">
+            <label class="sr-only">商品画像</label>
+            <%= attachment_image_tag @product, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size: "100x100" %>
+          </div>
+
+          <div class="col-xs-6">
+            <br>
+            <label>商品名</label>
+            <%= @product.name %>
+            <br>
+
+            <label>商品説明</label>
+            <%= @product.explanation %>
+            <br>
+
+            <label>ジャンル</label>
+            <%= @product.genre.name %>
+            <br>
+
+            <label>税込価格（税抜価格）</label>
+            <%= ((@product.price_excluding_tax * 1.1) .round).to_s(:delimited, delimiter: ',') %>
+            (<%= @product.price_excluding_tax.to_s(:delimited, delimiter: ',') %>)円
+            <br>
+
+            <label>販売ステータス</label>
+            <% if @product.is_active == true %>
+              販売中
+              <% else %>
+              販売停止中
+              <% end %>
+            <br>
+
+            <%= link_to "編集する", edit_seller_product_path(@product.id) %>
+
+          </div>
+        </div>
+      </div>
+  </main>
+
+<%= render 'layouts/anglerfooter' %>

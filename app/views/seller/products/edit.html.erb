@@ -1,0 +1,62 @@
+<%= render 'layouts/anglerheader' %>
+
+  <main>
+    <h2>商品編集</h2>
+
+      <div class="container">
+        <div class="row">
+          <%= form_with model: [:seller, @product], url:{controller: :products, action: :update}, local: true do |f| %>
+
+            <div class="col-xs-6">
+              <div class="field_with_errors">
+                <% if @product.errors.any? %>
+                  <h3 class="error">
+                    <%= @product.errors.count %>件のエラーがあります。
+                  </h3>
+                  <ul>
+                    <% @product.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                <% end %>
+              </div>
+
+              <label class="sr-only">商品画像</label>
+              <%= attachment_image_tag @product, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size: "100x100" %>
+              <br><%= f.attachment_field :image %></br>
+            </div>
+
+            <div class="col-xs-6">
+              <label>商品名</label>
+              <%= f.text_field :name %>
+              <br>
+
+              <label>商品説明</label>
+              <%= f.text_area :explanation %>
+              <br>
+
+              <label>ジャンル</label>
+              <%= f.collection_select :genre_id, Genre.where(is_active: "true"), :id, :name, include_blank: '選択して下さい' %>
+              <br>
+
+              <label>税抜価格</label>
+              <%= f.text_field :price_excluding_tax %>
+              <br>
+
+              <label>販売ステータス</label>
+              <% if @product.is_active == true %>
+                販売中
+                <% else %>
+                販売停止中
+                <% end %>
+              <br>
+
+              <%= f.submit "変更を保存" %>
+
+            </div>
+          <% end %>
+        </div>
+      </div>
+  <main>
+
+<%= render 'layouts/anglerfooter' %>

@@ -1,0 +1,33 @@
+<%= render 'layouts/adminheader' %>
+
+  <main>
+    <h2>釣り人一覧</h2>
+
+      <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>会員ID</th>
+            <th>氏名</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+          </tr>
+          </thead>
+
+          <tbody>
+            <% @anglers.each do |angler| %>
+            <tr>
+              <td><%= angler.id %></td>
+              <td><%= link_to angler.full_anglers_name, admin_angler_path(angler.id) %></td>
+              <td><%= angler.email %></td>
+            <% if angler.deleted_at == nil %>
+              <td>有効</td>
+            <% else %>
+              <td>退会済</td>
+            <% end %>
+            </tr>
+            <% end %>
+          </tbody>
+      </table>
+  </main>
+
+<%= render 'layouts/adminfooter' %>

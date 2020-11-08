@@ -1,0 +1,76 @@
+<%= render 'layouts/adminheader' %>
+
+  <main>
+    <h2><%= @user.full_users_name %>さんの会員情報編集</h2>
+
+      <%= form_with model: [:admin, @user], url:{controller: :users, action: :edit}, local: true do |f| %>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+
+        <tbody>
+          <tr>
+            <td>
+            <p>会員ID<%= @user.id %></p>
+            </td>
+          </tr>
+
+            <div class="field_with_errors">
+              <% if @user.errors.any? %>
+                <h3 class="error"><%= @user.errors.count %>件のエラーがあります。</h3>
+                <ul>
+                  <% @user.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              <% end %>
+            </div>
+
+          <tr>
+            <td><label>氏名</label></td>
+            <td><%= f.text_field :surname %></td>
+            <td><%= f.text_field :name %></td>
+          </tr>
+
+          <tr>
+            <td><label>フリガナ</label></td>
+            <td><%= f.text_field :surname_phonetic %></td>
+            <td><%= f.text_field :name_phonetic %></td>
+          </tr>
+
+          <tr>
+            <td><label>郵便番号</label></td>
+            <td><%= f.text_field :postal_code %></td>
+          </tr>
+
+          <tr>
+            <td><label>住所</label></td>
+            <td><%= f.text_field :street_address %></td>
+          </tr>
+
+          <tr>
+            <td><label>メールアドレス</label></td>
+            <td><%= f.text_field :email %></td>
+          </tr>
+
+          <tr>
+            <td><label>会員ステータス</label></td>
+            <td>
+            <label><%= f.radio_button :is_active, true %>有効</label>
+            <label><%= f.radio_button :is_active, false %>退会済み</label>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+            <p><%= f.submit '変更を保存する' %></p><br>
+
+      <% end %>
+  </main>
+
+<%= render 'layouts/adminfooter' %>

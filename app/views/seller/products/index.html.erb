@@ -1,0 +1,47 @@
+<%= render 'layouts/anglerheader' %>
+
+  <main>
+    <h2>商品一覧管理画面</h2>
+
+      <%= link_to "+", new_seller_product_path %>
+
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>税抜き価格</th>
+            <th>ジャンル</th>
+            <th>ステータス</th>
+            <th></th>
+          </tr>
+          </thead>
+
+          <tbody>
+            <% @products.each do |product| %>
+              <tr>
+                <td><%= product.id %></td>
+                <td>
+                  <%= link_to seller_product_path(product.id) do %>
+                    <%= product.name %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= product.price_excluding_tax.to_s(:delimited, delimiter: ',') %>
+                </td>
+                <td><%= product.genre.name %></td>
+              <% if product.is_active == true %>
+                <td>販売中</td>
+              <% else %>
+                <td>販売停止中</td>
+              <% end %>
+                <td>
+                  <%= link_to "削除する", seller_product_path(product.id), method: :delete, "data-confirm" => "本当に削除しますか?" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+  </main>
+
+<%= render 'layouts/anglerfooter' %>

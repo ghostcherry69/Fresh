@@ -1,0 +1,51 @@
+<%= render 'layouts/userheader' %>
+
+  <main>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-3">
+          <table>
+            <thead>
+              <tr>
+                <th>ジャンル検索</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @genres.each do |genre| %>
+                <tr>
+                  <td><%= link_to genre.name, public_products_path(genre_id: genre.id) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col-xs-9">
+          <%= attachment_image_tag @product, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size: "100x100" %>
+          <label class="sr-only">商品名</label>
+          <%= @product.name %><br>
+          <label class="sr-only">商品説明文</label>
+          <%= @product.explanation %><br>
+          <label class="sr-only">税込価格</label>
+          <%= ((@product.price_excluding_tax * 1.1).round).to_s(:delimited, delimiter: ',') %>(税込)<br>
+
+            <%= form_with model: [:public, @new_product_in_cart], url:{controller: :product_in_carts, action: :create}, local: true do |f| %>
+              <% if @new_product_in_cart.errors.any? %>
+                <h3 class="error"><%= @new_product_in_cart.errors.count %>件のエラーがあります。</h3>
+                <ul>
+                <% @new_product_in_cart.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              <% end %>
+            <%= f.select :quantity,{'1個': "1", '2個': "2", '3個': "3", '4個': "4", '5個': "5", '6個': "6", '7個': "7", '8個': "8", '9個': "9", '10個': "10", '11個': "11", '12個': "12", '13個': "13", '14個': "14", '15個': "15", '16個': "16", '17個': "17", '18個': "18", '19個': "19", '20個': "20", '21個': "21", '22個': "22", '23個': "23", '24個': "24", '25個': "25", '26個': "26", '27個': "27", '28個': "28", '29個': "29", '30個': "30"}, include_blank: "個数選択" %><br>
+            <%= f.hidden_field :product_id, :value => @product.id %>
+            <%= f.submit 'カートに入れる' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </main>
+
+<%= render 'layouts/userfooter' %>
