@@ -47,7 +47,7 @@ class Anglers::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-      angler_top_path
+      seller_top_path
   end
 
   # If you have extra params to permit, append them to the sanitizer.

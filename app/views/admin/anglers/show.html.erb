@@ -1,0 +1,51 @@
+<%= render 'layouts/adminheader' %>
+
+  <main>
+    <h2><%= @angler.full_anglers_name %>さんの釣り人詳細</h2>
+
+      <% if flash[:notice] %>
+        <div class="flash">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+
+      <p>会員ID</p>
+      <%= @angler.id %>
+      <% if @angler.is_active == true %>
+        有効会員
+      <% else %>
+        退会済み
+      <% end %>
+
+      <p>氏名</p>
+      <%= @angler.surname %>
+      <%= @angler.name %>
+
+      <p>フリガナ</p>
+      <%= @angler.surname_phonetic %>
+      <%= @angler.name_phonetic %>
+
+      <p>郵便番号</p>
+      <%= @angler.postal_code %>
+
+      <p>住所</p>
+      <%= @angler.street_address %>
+
+      <p>電話番号</p>
+      <%= @angler.phone_number %>
+
+      <p>メールアドレス</p>
+      <%= @angler.email %>
+
+      <p>会員ステータス</p>
+      <% if @angler.is_active == true %>
+        有効
+      <% else %>
+        退会済
+      <% end %>
+
+      <p><%= link_to "編集する", edit_admin_angler_path %></p>
+      <p><%= link_to "注文履歴一覧を見る", admin_orders_path %></p>
+  </main>
+
+<%= render 'layouts/adminfooter' %>

@@ -1,0 +1,69 @@
+<%= render 'layouts/adminheader' %>
+
+  <main>
+    <h2>注文履歴詳細</h2>
+
+      <% if flash[:notice] %>
+        <div class="flash">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+
+      <p><label>購入者<%= @order.name %></label></p>
+
+      <p><label>配送先
+      <%= @order.postal_code %>
+      <%= @order.street_address %><br>
+      <%= @order.name %>
+      </label></p>
+
+      <p><label>支払方法<%= @order.method_payment %></label></p>
+
+      <%= form_with model: [:admin, @order], url:{controller: :orders, action: :show}, local: true do |f| %>
+
+        <label>注文ステータス
+          <%= f.select :order_status, options_for_select(Order.order_statuses.keys.map{|k| [t("enums.order.order_status.#{k}"), k]}, @order.order_status) %>
+          <%= f.submit "更新" %>
+        </label>
+      <% end %>
+
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>商品名</th>
+          <th>単価（税込）</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th>製作ステータス</th>
+          <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+          <% @ordered_products.each do |ordered_product| %>
+          <tr>
+            <td><%= ordered_product.product.name %></td>
+              <td>
+                <%= ((ordered_product.product. price_excluding_tax * 1.1) .round).to_s(:delimited, delimiter: ',')  %>
+              </td>
+              <td><%= ordered_product.quantity %></td>
+              <td><%= ((ordered_product.product.price_excluding_tax * 1.1) .round * ordered_product.quantity).to_s(:delimited, delimiter: ',') %></td>
+              <%= form_with(url: admin_ordered_product_path(ordered_product.id), method: :patch, local: true) do |f| %>
+              <td>
+                <%= f.select :production_status, options_for_select(OrderedProduct.production_statuses.keys.map{|k| [t("enums.ordered_product.production_status.#{k}"), k]}, ordered_product.production_status) %>
+              </td>
+              <td><%= f.submit "更新" %></td>
+              <% end %>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+       <p><label>商品合計<%= @total_price.to_s(:delimited, delimiter: ',') %></label></p>
+
+       <p><label>送料</label>800円</p>
+
+       <p><label>請求金額合計<%= (@total_price + 800).to_s(:delimited, delimiter: ',') %></label></p>
+  </main>
+
+<%= render 'layouts/adminfooter' %>

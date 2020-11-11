@@ -25,7 +25,7 @@ class Users::SessionsController < Devise::SessionsController
   # protected
 
   def after_sign_in_path_for(resource)
-      user_plofile_path(current_user)
+      public_user_path(current_user)
   end
   def after_sign_out_path_for(resource)
       new_user_session_path

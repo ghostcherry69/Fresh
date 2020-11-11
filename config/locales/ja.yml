@@ -5,7 +5,7 @@ ja:
       angler: 釣り人
       genre: ジャンル
       product: 商品
-      delivery_destinations: 配送先
+      delivery_destination: 配送先
     attributes:
       user:
         surname: 姓
@@ -31,7 +31,7 @@ ja:
         image: 商品画像
         explanation: 商品説明
         price_excluding_tax: 税抜き価格
-      delivery_destinations:
+      delivery_destination:
         postal_code: 郵便番号
         street_address: 住所
         name: 名前

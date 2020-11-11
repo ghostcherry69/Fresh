@@ -1,0 +1,34 @@
+<%= render 'layouts/userheader' %>
+
+  <main>
+    <h2>注文情報入力</h2>
+
+      <%= form_with model: [:public, @new_order], url:{controller: :orders, action: :confirm}, local: true do |f| %>
+
+        <label>支払方法</label><br>
+          <label><%= f.radio_button :method_payment, "クレジットカード" %>クレジットカード</label>
+          <br>
+          <label><%= f.radio_button :method_payment, "銀行振込" %>銀行振込</label>
+          <br>
+
+        <label>お届け先</label><br>
+
+          <label><%= f.radio_button :address_option, "0" %>ご自身の住所</label><br>
+          <%= current_user.full_users %><br>
+
+          <label><%= f.radio_button :address_option, "1" %>登録済み住所から選択</label>
+          <%= f.collection_select :delivery_id, @delivery_destination, :id, :full_delivery_destinations, include_blank: "選択してください" %><br>
+
+
+          <label><%= f.radio_button :address_option, "2" %>新しいお届け先</label><br>
+          <label><%= f.text_field :postal_code %>郵便番号(ハイフンなし)</label><br>
+          <label><%= f.text_field :street_address %>住所</label><br>
+          <label><%= f.text_field :name %>宛名</label><br>
+          <%= f.hidden_field :postage, :value => 800 %>
+          <%= f.hidden_field :request_amount, :value => 0 %>
+
+        <%= f.submit "確認画面へ進む" %>
+      <% end %>
+  </main>
+
+<%= render 'layouts/userfooter' %>

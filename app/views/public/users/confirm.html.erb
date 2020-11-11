@@ -1,0 +1,26 @@
+<%= render 'layouts/userheader' %>
+
+  <main>
+    <center>
+      <h3>本当に退会しますか</h3>
+    </center>
+
+    <center>
+      <p>
+        退会すると、会員登録情報や<br>
+        これまでの購入履歴が閲覧できなくなります。<br>
+        退会する場合は、「退会する」をクリックしてください。<br>
+      </p>
+    </center>
+
+      <p>
+        <% link_to "退会しない",  public_user_path(current_user) %>
+      </p>
+    <% if user_signed_in? && @user.id == current_user.id %>
+      <p>
+        <%= link_to "退会する", user_withdrow_path, method: :patch %>
+      </p>
+    <% end %>
+  </main>
+
+<%= render 'layouts/userfooter' %>

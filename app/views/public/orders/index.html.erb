@@ -1,0 +1,45 @@
+<%= render 'layouts/userheader' %>
+
+  <main>
+    <h2>注文履歴一覧</h2>
+
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>注文日</th>
+          <th>配送先</th>
+          <th>注文商品</th>
+          <th>支払金額</th>
+          <th>ステータス</th>
+          <th>注文詳細</th>
+        </tr>
+        </thead>
+
+      <% if @orders.size == 0 %>
+        <h4>注文履歴はありません</h4>
+      <% else %>
+        <tbody>
+          <% @orders.each do |order| %>
+            <tr>
+              <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+              <td>
+                <%= order.postal_code %><br>
+                <%= order.street_address %><br>
+                <%= order.name %>
+              </td>
+              <td>
+                <% order.ordered_products.each do |ordered_product| %>
+                <%= ordered_product.product.name %><br>
+              <% end %>
+              </td>
+              <td><%= order.request_amount.to_s(:delimited, delimiter: ',') %>円</td>
+              <td><%= order.order_status %></td>
+              <td><%= link_to "表示する", public_order_path(order.id) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      <% end %>
+      </table>
+  </main>
+
+<%= render 'layouts/userfooter' %>

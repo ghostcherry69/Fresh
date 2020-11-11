@@ -1,0 +1,84 @@
+<%= render 'layouts/userheader' %>
+
+  <main>
+    <h2>注文確認画面</h2>
+
+      <% if flash[:notice] %>
+        <div class="flash">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>商品名</th>
+          <th>単価(税込み)</th>
+          <th>数量</th>
+          <th>小計</th>
+        </tr>
+        </thead>
+
+        <tbody>
+          <% @product_in_carts.each do |product_in_cart| %>
+          <tr>
+            <td><%= product_in_cart.product.name %></td>
+            <td>
+            <%= ((product_in_cart.product.price_excluding_tax * 1.1) .round * product_in_cart.quantity).to_s(:delimited, delimiter: ',') %>
+            </td>
+            <td><%= product_in_cart.quantity %></td>
+            <td><%= ((product_in_cart.product.price_excluding_tax * 1.1) .round * product_in_cart.quantity).to_s(:delimited, delimiter: ',') %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <td>送料</td>
+            <td>800</td>
+          </tr>
+          <tr>
+            <td>商品合計</td>
+            <td><%= @total_price.to_s(:delimited, delimiter: ',') %></td>
+          </tr>
+          <tr>
+            <td>請求金額</td>
+            <td><%= (@total_price + 800).to_s(:delimited, delimiter: ',') %></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        <h4>支払方法</h4>
+        <%= @new_order.method_payment %>
+      </p>
+
+      <p>
+        <h4>お届け先</h4>
+        <%= @new_order.postal_code %><%= @new_order.street_address %><%= @new_order.name %>
+      </p>
+
+      <center>
+        <p>
+          <%= form_with model: [:public, @new_order], url:{controloler: order:, action: :create}, local: true do |f| %>
+          <%= f.hidden_field :postal_code %>
+          <%= f.hidden_field :street_address %>
+          <%= f.hidden_field :name %>
+          <%= f.hidden_field :postage %>
+          <%= f.hidden_field :request_amount, :value => @total_price + 800 %>
+          <%= f.hidden_field :method_payment %>
+          <%= f.hidden_field :address_option, :value => @address_option %>
+          <% if @new_order.postal_code.blank? || @new_order.street_address.blank? || @new_order.name.blank? || @new_order.postage.blank? || @total_price.blank? || @new_order.method_payment.blank? || @address_option.blank? %>
+            <%= link_to "情報入力画面に戻る", new_user_order_path %>
+          <% else %>
+            <%= f.submit "購入を確定する" %>
+          <% end %>
+          <% end %>
+        </p>
+
+      </center>
+  </main>
+
+<%= render 'layouts/userfooter' %>
