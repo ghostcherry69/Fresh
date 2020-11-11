@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  root 'user/homes#top'
+  root 'public/homes#top'
 
   namespace :admin do
     get 'top' => 'homes#top'
@@ -43,8 +43,8 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update]
     post 'confirm' => 'orders#confirm'
     get 'thanks' => 'orders#thanks'
-    get 'confirm' => 'profiles#confirm'
-    patch 'withdrow' => 'profiles#withdrow'
+    get 'confirm' => 'users#confirm'
+    patch 'withdrow' => 'users#withdrow'
     delete 'empty' => 'product_in_carts#empty'
   end
 end

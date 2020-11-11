@@ -27,7 +27,7 @@ class Public::ProductInCartsController < ApplicationController
       @new_product_in_cart.save
       flash[:notice] ='商品が保存されました'
     end
-    redirect_to user_product_in_carts_path
+    redirect_to public_product_in_carts_path
   end
 
   def update

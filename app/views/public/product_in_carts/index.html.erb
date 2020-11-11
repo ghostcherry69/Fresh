@@ -13,17 +13,18 @@
         <h5>お客様のショッピングカートに商品はありません。</h5>
       <% end %>
 
+      <br>
       <%= link_to "カートを空にする", public_empty_path, method: :delete, "data-confirm" => "本当にカートを空にしますか？" %>
 
         <table class="table table-striped">
           <thead>
-          <tr>
-            <th>商品名</th>
-            <th>単価(税込み)</th>
-            <th>数量</th>
-            <th>小計</th>
-            <th></th>
-          </tr>
+            <tr>
+              <th>商品名</th>
+              <th>単価(税込み)</th>
+              <th>数量</th>
+              <th>小計</th>
+              <th></th>
+            </tr>
           </thead>
 
           <tbody>
@@ -32,10 +33,9 @@
                 <td><%= product_in_cart.product.name %></td>
                 <td><%= ((product_in_cart.product.price_excluding_tax * 1.1).round).to_s(:delimited, delimiter: ',') %></td>
 
-              <%= form_with model: [:public, @new_product_in_cart], url:{controloler: product_in_cart:, action: :create}, local: true do |f| %>
+              <%= form_with model: [:public, product_in_cart], local: true do |f| %>
                 <td>
                   <%= f.number_field :quantity, min: 1, step: 1, placeholder:"数量を入力して下さい" %>
-                  <%= product_in_cart.product.seller.try(:name) %>
                   <%= f.submit "変更" %>
                 </td>
               <% end %>
@@ -48,18 +48,13 @@
           </tbody>
         </table>
 
-        <p><%= link_to "買い物を続ける", root_path %></p>
-        合計金額
+      <div class="total_price">
+        <string>合計金額</string>
+        <string><%= @total_price.to_s(:delimited, delimiter: ',') %></string>
+      </div>
 
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>合計金額</th>
-              <th><%= @total_price.to_s(:delimited, delimiter: ',') %></th>
-            </tr>
-          </thead>
-
-        <p><%= link_to "情報入力に進む", new_public_order_path %></p>
+      <p><%= link_to "買い物を続ける", root_path %></p>
+      <p><%= link_to "情報入力に進む", new_public_order_path %></p>
   </main>
 
 <%= render 'layouts/userfooter' %>

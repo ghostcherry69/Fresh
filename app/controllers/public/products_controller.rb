@@ -14,6 +14,8 @@ class Public::ProductsController < ApplicationController
     @genres = Genre.all
     @product = Product.find(params[:id])
     @new_product_in_cart = ProductInCart.new
+    @stock_quantity_array = []
+    @stock_quantity_array = (1..@product.stock_quantity).to_a
   end
 
 end

@@ -31,7 +31,7 @@
 header{
   width: 100%;
   height: 60px;
-  background-color: #FF6633;
+  background-color: #33CCFF;
   text-align: center;
 }
 .header_logo{
@@ -60,6 +60,28 @@ header{
 
 main{
   height: 1000px;
+}
+
+.product-index{
+  width: auto;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.product-show{
+  margin-top: 100px;
+}
+.total_price{
+  font-size: 30px;
+  text-align: right;
+  margin: 50px 40px 0 0 ;
+}
+.total_price string:nth-child(2){
+  border-bottom: solid;
+}
+.main-content{
+  padding: 0 20px;
 }
 
 .container{

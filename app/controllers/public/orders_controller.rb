@@ -3,7 +3,7 @@ class Public::OrdersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @orders = current_user.orders
+    @orders = Order.where(user_id: current_user.id)
   end
 
   def show
@@ -64,15 +64,18 @@ class Public::OrdersController < ApplicationController
       end
       @product_in_carts = current_user.product_in_carts
        @product_in_carts.each do |product_in_cart|
-        @product = product_in_cart.product
        @ordered_product = OrderedProduct.new
        @ordered_product.order_id = @new_order.id
        @ordered_product.product_id = product_in_cart.product.id
        @ordered_product.quantity = product_in_cart.quantity
-       if @product.quantity - product_in_cart.quantity == 0
-        @product.update(is_active: false)
        @ordered_product.purchase_price = (product_in_cart.product.price_excluding_tax * 1.1).round
        @ordered_product.save
+         @product = product_in_cart.product
+         if @product.quantity - product_in_cart.quantity == 0
+            @product.update(is_active: false)
+         else
+            @product.update_attribute(:quantity, @product.quantity - product_in_cart.quantity)
+         end
        end
       @product_in_carts.destroy_all
       redirect_to user_thanks_path

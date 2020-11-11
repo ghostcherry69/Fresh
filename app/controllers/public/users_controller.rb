@@ -12,13 +12,9 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = current_user
-    if params[:user][:password].blank?
-      params[:user].delete("password")
-    return
-    end
     if @user.update(user_params)
       flash[:notice] = "変更内容が保存されました"
-      redirect_to user_profile_path(@user.id)
+      redirect_to public_user_path(@user.id)
     else
       render :edit
     end
@@ -37,7 +33,7 @@ class Public::UsersController < ApplicationController
 
   private
   def user_params
-      params.require(:user).permit(:surname, :name, :surname_phonetic, :name_phonetic, :email, :password, :postal_code, :street_address, :phone_number, :is_active)
+      params.require(:user).permit(:surname, :name, :surname_phonetic, :name_phonetic, :email, :postal_code, :street_address, :phone_number, :is_active)
   end
 
 end

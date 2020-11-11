@@ -15,6 +15,9 @@
         </tr>
         </thead>
 
+      <% if @orders.size == 0 %>
+        <h4>注文履歴はありません</h4>
+      <% else %>
         <tbody>
           <% @orders.each do |order| %>
             <tr>
@@ -35,6 +38,7 @@
             </tr>
           <% end %>
         </tbody>
+      <% end %>
       </table>
   </main>
 

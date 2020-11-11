@@ -29,7 +29,7 @@
           <% else %>
             <h3>商品一覧</h3>
           <% end %>
-            <div class="main">
+            <div class="product-index">
               <% @products.each do |product| %>
                 <div class="main-content">
                   <div class="main-img">
@@ -38,9 +38,9 @@
                   <% end %>
                   </div>
                   <div class="main-text">
-                    <p>商品名</p>
+                    <p>【商品名】</p>
                     <%= product.name %>
-                    <p>税抜価格</p>
+                    <p>【税抜価格】</p>
                     <%= product.price_excluding_tax.to_s(:delimited, delimiter: ',') %>
                   </div>
                 </div>
