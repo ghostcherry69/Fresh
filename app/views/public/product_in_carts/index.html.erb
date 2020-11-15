@@ -35,7 +35,7 @@
 
               <%= form_with model: [:public, product_in_cart], local: true do |f| %>
                 <td>
-                  <%= f.number_field :quantity, min: 1, step: 1, placeholder:"数量を入力して下さい" %>
+                  <%= f.select :quantity, @quantity_array %>
                   <%= f.submit "変更" %>
                 </td>
               <% end %>

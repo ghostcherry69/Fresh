@@ -32,21 +32,23 @@
           <% end %>
 
           <h3>新商品</h3>
-            <div class="main">
+            <div class="product-top">
               <% @products.first(4).each do |product| %>
-                <div class="main-content">
-                  <div class="main-img">
-                  <%= link_to public_product_path(product.id) do %>
-                    <%= attachment_image_tag product, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size: "100x100"%>
-                  <% end %>
+                <% if product.is_active == true %>
+                  <div class="main-content">
+                    <div class="main-img">
+                    <%= link_to public_product_path(product.id) do %>
+                      <%= attachment_image_tag product, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size: "100x100"%>
+                    <% end %>
+                    </div>
+                    <div class="main-text">
+                      <p>【商品名】</p>
+                      <%= product.name %>
+                      <p>【税抜価格】</p>
+                      <%= product.price_excluding_tax.to_s(:delimited, delimiter: ',') %>
+                    </div>
                   </div>
-                  <div class="main-text">
-                    <p>【商品名】</p>
-                    <%= product.name %>
-                    <p>【税抜価格】</p>
-                    <%= product.price_excluding_tax.to_s(:delimited, delimiter: ',') %>
-                  </div>
-                </div>
+                <% end %>
               <% end %>
             </div>
           <br>

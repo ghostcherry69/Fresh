@@ -18,7 +18,7 @@
       </p>
     <% if user_signed_in? && @user.id == current_user.id %>
       <p>
-        <%= link_to "退会する", user_withdrow_path, method: :patch %>
+        <%= link_to "退会する", public_withdrow_path, method: :patch %>
       </p>
     <% end %>
   </main>

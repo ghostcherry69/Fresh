@@ -62,7 +62,7 @@ main{
   height: 1000px;
 }
 
-.product-index{
+.product-index, .product-top{
   width: auto;
   margin: 0;
   padding: 0;
@@ -84,6 +84,10 @@ main{
   padding: 0 20px;
 }
 
+.thanks-p{
+  margin: 30px;
+  text-align: right;
+}
 .container{
   height: 100%;
 }
