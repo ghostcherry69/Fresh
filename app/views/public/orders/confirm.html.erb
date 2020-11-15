@@ -62,22 +62,21 @@
 
       <center>
         <p>
-          <%= form_with model: [:public, @new_order], url:{controloler: order:, action: :create}, local: true do |f| %>
-          <%= f.hidden_field :postal_code %>
-          <%= f.hidden_field :street_address %>
-          <%= f.hidden_field :name %>
-          <%= f.hidden_field :postage %>
-          <%= f.hidden_field :request_amount, :value => @total_price + 800 %>
-          <%= f.hidden_field :method_payment %>
-          <%= f.hidden_field :address_option, :value => @address_option %>
-          <% if @new_order.postal_code.blank? || @new_order.street_address.blank? || @new_order.name.blank? || @new_order.postage.blank? || @total_price.blank? || @new_order.method_payment.blank? || @address_option.blank? %>
-            <%= link_to "情報入力画面に戻る", new_user_order_path %>
-          <% else %>
-            <%= f.submit "購入を確定する" %>
-          <% end %>
+          <%= form_with model: @new_order, url: public_orders_path, local: true do |f| %>
+            <%= f.hidden_field :postal_code %>
+            <%= f.hidden_field :street_address %>
+            <%= f.hidden_field :name %>
+            <%= f.hidden_field :postage %>
+            <%= f.hidden_field :request_amount, :value => @total_price + 800 %>
+            <%= f.hidden_field :method_payment %>
+            <%= f.hidden_field :address_option, :value => @address_option %>
+            <% if @new_order.postal_code.blank? || @new_order.street_address.blank? || @new_order.name.blank? || @new_order.postage.blank? || @total_price.blank? || @new_order.method_payment.blank? || @address_option.blank? %>
+              <%= link_to "情報入力画面に戻る", new_public_order_path %>
+            <% else %>
+              <%= f.submit "購入を確定する" %>
+            <% end %>
           <% end %>
         </p>
-
       </center>
   </main>
 

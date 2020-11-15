@@ -38,11 +38,11 @@
             <label>販売ステータス</label>
             <% if @product.is_active == true %>
               販売中
-              <% else %>
+            <% else %>
               販売停止中
-              <% end %>
-            <br>
+            <% end %>
 
+            <br>
             <%= link_to "編集する", edit_seller_product_path(@product.id) %>
 
           </div>

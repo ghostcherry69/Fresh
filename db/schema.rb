@@ -77,10 +77,10 @@ ActiveRecord::Schema.define(version: 2020_11_08_050109) do
     t.string "postal_code", null: false
     t.string "street_address", null: false
     t.string "name", null: false
-    t.integer "postage", null: false
+    t.integer "postage", default: 800, null: false
     t.integer "request_amount", null: false
-    t.integer "method_paymen", null: false
-    t.integer "order_status", null: false
+    t.integer "method_payment", null: false
+    t.integer "order_status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_orders_on_user_id"

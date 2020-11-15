@@ -64,24 +64,24 @@ class Public::OrdersController < ApplicationController
       end
       @product_in_carts = current_user.product_in_carts
        @product_in_carts.each do |product_in_cart|
-       @ordered_product = OrderedProduct.new
-       @ordered_product.order_id = @new_order.id
-       @ordered_product.product_id = product_in_cart.product.id
-       @ordered_product.quantity = product_in_cart.quantity
-       @ordered_product.purchase_price = (product_in_cart.product.price_excluding_tax * 1.1).round
-       @ordered_product.save
-         @product = product_in_cart.product
-         if @product.quantity - product_in_cart.quantity == 0
-            @product.update(is_active: false)
-         else
-            @product.update_attribute(:quantity, @product.quantity - product_in_cart.quantity)
-         end
+         @ordered_product = OrderedProduct.new
+         @ordered_product.order_id = @new_order.id
+         @ordered_product.product_id = product_in_cart.product.id
+         @ordered_product.quantity = product_in_cart.quantity
+         @ordered_product.purchase_price = (product_in_cart.product.price_excluding_tax * 1.1).round
+         @ordered_product.save
+           @product = product_in_cart.product
+           if @product.stock_quantity - product_in_cart.quantity == 0
+              @product.update(is_active: false)
+           else
+              @product.update_attribute(:stock_quantity, @product.stock_quantity - product_in_cart.quantity)
+           end
        end
       @product_in_carts.destroy_all
-      redirect_to user_thanks_path
+      redirect_to public_thanks_path
     else
       flash[:notice] = "予期せぬエラーが発生しました"
-      redirect_to user_product_in_carts_path
+      redirect_to public_product_in_carts_path
     end
   end
 

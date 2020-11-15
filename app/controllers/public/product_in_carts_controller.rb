@@ -8,12 +8,14 @@ class Public::ProductInCartsController < ApplicationController
     @product_in_carts.each do |product_in_cart|
       item_price = (product_in_cart.product.price_excluding_tax * 1.1).round
       @total_price += item_price * product_in_cart.quantity
+      @quantity_array = []
+      @quantity_array = (1..product_in_cart.product.stock_quantity).to_a
     end
   end
 
   def create
     if params[:product_in_cart][:quantity].to_i == 0
-      redirect_to user_product_in_carts_path
+      redirect_to public_product_in_carts_path
     return
     end
     @new_product_in_cart = ProductInCart.new(product_in_cart_params)
@@ -35,11 +37,11 @@ class Public::ProductInCartsController < ApplicationController
     if params[:product_in_cart][:quantity].to_i == 0
       @product_in_cart.destroy
       flash[:notice] = "カート商品が削除されました"
-      redirect_to user_product_in_carts_path
+      redirect_to public_product_in_carts_path
     else
       @product_in_cart.update(product_in_cart_params)
       flash[:notice] = "カート内商品数量が変更されました"
-      redirect_to user_product_in_carts_path
+      redirect_to public_product_in_carts_path
     end
   end
 
@@ -47,14 +49,14 @@ class Public::ProductInCartsController < ApplicationController
     product_in_cart = ProductInCart.find(params[:id])
     product_in_cart.destroy
     flash[:notice] = "カート内商品が削除されました"
-    redirect_to user_product_in_carts_path
+    redirect_to public_product_in_carts_path
   end
 
   def empty
     product_in_carts = ProductInCart.where(user_id: current_user.id)
     product_in_carts.destroy_all
     flash[:notice] = "カート内商品が全て削除されました"
-    redirect_to user_product_in_carts_path
+    redirect_to public_product_in_carts_path
   end
 
   private
