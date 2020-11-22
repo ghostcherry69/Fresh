@@ -24,6 +24,7 @@
         <div class="col-xs-9">
           <div class="product-show">
             <%= attachment_image_tag @product, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size: "150x150" %>
+            <br>
             <label>【商品名】</label>
             <%= @product.name %><br>
             <label>【商品説明文】</label><br>
