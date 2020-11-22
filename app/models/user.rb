@@ -14,6 +14,10 @@ class User < ApplicationRecord
   self.surname_phonetic + self.name_phonetic
   end
 
+  def active_for_authentication?
+  super && (self.is_active == true)
+  end
+
   acts_as_paranoid
 
   validates :surname, presence: true
