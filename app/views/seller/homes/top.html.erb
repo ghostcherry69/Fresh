@@ -3,8 +3,15 @@
   <main>
     <div class="container">
       <div class="row">
+        <div class="main-visual">
+          <p class="main-visual-text">
+          新鮮。そして天然。
+          </p>
+      </div>
+
+      <div class="row">
         <div class="col-xs-3">
-          <table>
+          <table class="genre">
             <thead>
             <tr>
               <th>ジャンル検索</th>
@@ -31,7 +38,7 @@
             </div>
           <% end %>
 
-            <h3>商品一覧</h3>
+            <h2>商品一覧</h2>
               <div class="product-index">
                 <% @products.each do |product| %>
                   <div class="main-content">
