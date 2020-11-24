@@ -34,6 +34,7 @@ header{
   background-color: #333333;
   text-align: center;
 }
+
 .header_logo{
   float: left;
   list-style: none;
@@ -41,9 +42,11 @@ header{
   line-height: 60px;
   margin-left: 30px;
 }
+
 .navbar-right{
   list-style: none;
 }
+
 .header_list_item{
   line-height: 60px;
   list-style: none;
@@ -51,9 +54,11 @@ header{
   margin: 0 10px;
   color: white;
 }
+
 .header_list_item a {
   color: white;
 }
+
 .header_list_item a:hover{
   background-color: transparent !important;
 }
@@ -62,6 +67,7 @@ main{
   height: 1000px;
   margin: 0 50px 0 50px;
 }
+
 .main-visual {
   width: 100%;
   height: 300px;
@@ -69,6 +75,7 @@ main{
   background-size: cover ;
   background-position: center;
 }
+
 .main-visual-text{
   color: white;
   font-family: "MS Pゴシック";
@@ -81,6 +88,7 @@ main{
 .genre{
   margin: 40px 0 0 0;
 }
+
 .product-index, .product-top{
   width: auto;
   margin: 0;
@@ -88,17 +96,41 @@ main{
   display: flex;
   flex-wrap: wrap;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.pagination>li>a {
+  border: none;
+  color: #696969;
+}
+
+.pagination>.active>a {
+  background: #93c9ff;
+}
+
+.plus{
+  font-size: 50px;
+}
+
 .product-show{
   margin: 100px 0 0 150px;
 }
+
 .total_price{
   font-size: 30px;
   text-align: right;
   margin: 50px 40px 0 0 ;
 }
+
 .total_price string:nth-child(2){
   border-bottom: solid;
 }
+
 .main-content{
   padding: 0 20px;
 }
@@ -107,6 +139,7 @@ main{
   margin: 30px;
   text-align: right;
 }
+
 .container{
   height: 100%;
   width: 100%;

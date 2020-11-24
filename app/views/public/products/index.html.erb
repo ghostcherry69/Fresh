@@ -30,7 +30,7 @@
               <p>現在、商品はありません。<p>
             <% end %>
           <% else %>
-            <h3>商品一覧</h3>
+            <h2>商品一覧</h2>
           <% end %>
             <div class="product-index">
               <% @products.each do |product| %>
@@ -45,12 +45,13 @@
                       <p>【商品名】</p>
                       <%= product.name %>
                       <p>【税抜価格】</p>
-                      <%= product.price_excluding_tax.to_s(:delimited, delimiter: ',') %>
+                      <%= product.price_excluding_tax.to_s(:delimited, delimiter: ',') %>円
                     </div>
                   </div>
                 <% end %>
               <% end %>
             </div>
+          <%= paginate @products %>
         </div>
       </div>
     </div>

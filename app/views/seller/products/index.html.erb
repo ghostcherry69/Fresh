@@ -3,7 +3,9 @@
   <main>
     <h2>商品一覧管理画面</h2>
 
-      <%= link_to "+", new_seller_product_path %>
+      <div class="plus">
+        <%= link_to "+", new_seller_product_path %>
+      </div>
 
         <table class="table table-striped">
           <thead>
@@ -27,7 +29,7 @@
                   <% end %>
                 </td>
                 <td>
-                  <%= product.price_excluding_tax.to_s(:delimited, delimiter: ',') %>
+                  <%= product.price_excluding_tax.to_s(:delimited, delimiter: ',') %>円
                 </td>
                 <td><%= product.genre.name %></td>
                 <% if product.is_active == true %>
