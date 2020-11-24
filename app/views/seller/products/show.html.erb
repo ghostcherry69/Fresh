@@ -30,9 +30,10 @@
             <%= @product.genre.name %>
             <br>
 
-            <label>税込価格（税抜価格）</label>
+            <label>税込価格</label>
             <%= ((@product.price_excluding_tax * 1.1) .round).to_s(:delimited, delimiter: ',') %>
-            (<%= @product.price_excluding_tax.to_s(:delimited, delimiter: ',') %>)円
+            <label>税抜価格</label>
+            <%= @product.price_excluding_tax.to_s(:delimited, delimiter: ',') %>円
             <br>
 
             <label>販売ステータス</label>

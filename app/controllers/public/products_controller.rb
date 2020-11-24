@@ -6,7 +6,7 @@ class Public::ProductsController < ApplicationController
        @products = Product.where(genre_id: params[:genre_id], is_active: true)
        @genre = Genre.find(params[:genre_id])
     else
-       @products = Product.where(is_active: true)
+       @products = Product.where(is_active: true).page(params[:page]).reverse_order
     end
   end
 
