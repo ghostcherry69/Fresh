@@ -44,8 +44,8 @@
         退会済
       <% end %>
 
-      <p><%= link_to "編集する", edit_admin_angler_path %></p>
-      <p><%= link_to "注文履歴一覧を見る", admin_orders_path %></p>
+      <p><%= link_to "編集する", edit_admin_angler_path, class: 'btn btn-default' %></p>
+      <p><%= link_to "釣り人一覧を見る", admin_anglers_path, class: 'btn btn-default' %></p>
   </main>
 
 <%= render 'layouts/adminfooter' %>

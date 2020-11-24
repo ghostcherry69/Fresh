@@ -14,12 +14,12 @@
     </center>
 
       <p>
-        <% link_to "退会しない",  public_user_path(current_user) %>
+        <% link_to "退会しない",  public_user_path(current_user), class: "btn btn-info" %>
       </p>
     <% if user_signed_in? && @user.id == current_user.id %>
-      <p>
-        <%= link_to "退会する", public_withdrow_path, method: :patch %>
-      </p>
+      <div class="confirm-btn">
+        <p><%= link_to "退会する", public_withdrow_path, class: "btn btn-danger", method: :patch %></p>
+      </div>
     <% end %>
   </main>
 

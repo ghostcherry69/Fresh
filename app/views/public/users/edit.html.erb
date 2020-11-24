@@ -102,10 +102,12 @@
               <div class="actions">
                 <tr>
                   <td>
-                  <%= f.submit "編集内容を保存する" %>
+                  <%= f.submit "編集内容を保存する", class: "button" %>
                   </td>
                   <td>
-                    <%= link_to "退会する", public_confirm_path %>
+                    <div class="withdrow-btn">
+                      <%= link_to "退会する", public_confirm_path, class: "btn btn-danger" %>
+                    </div>
                   </td>
                 </tr>
               </div>

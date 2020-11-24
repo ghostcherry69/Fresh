@@ -9,13 +9,6 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  def create
-    if admin_signed_in?
-      flash[:notice] = "管理者アカウントをログアウトして下さい。"
-      redirect_to admin_top_path
-    end
-    super
-  end
 
   # DELETE /resource/sign_out
   # def destroy

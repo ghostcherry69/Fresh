@@ -9,7 +9,7 @@
         </div>
       <% end %>
 
-      <p><label>購入者<%= @order.name %></label></p>
+      <p><label>購入者:<%= @order.name %></label></p>
 
       <p><label>配送先
       <%= @order.postal_code %>
@@ -23,7 +23,7 @@
 
         <label>注文ステータス
           <%= f.select :order_status, options_for_select(Order.order_statuses.keys.map{|k| [t("enums.order.order_status.#{k}"), k]}, @order.order_status) %>
-          <%= f.submit "更新" %>
+          <%= f.submit "更新", class: "button" %>
         </label>
       <% end %>
 
