@@ -23,7 +23,7 @@
               <% @genres.each do |genre| %>
                 <tr>
                   <td>
-                    <%= link_to genre.name, public_products_path(genre_id: genre.id) %>
+                    <%= link_to genre.name, public_products_path(genre_id: genre.id), class: "genre-list" %>
                   </td>
                 </tr>
               <% end %>
@@ -60,7 +60,7 @@
               <% end %>
             </div>
           <br>
-          <%= link_to "もっと見る>", public_products_path %>
+          <%= link_to "もっと見る>", public_products_path, class: 'btn btn-default' %>
         </div>
     </main>
   </div>

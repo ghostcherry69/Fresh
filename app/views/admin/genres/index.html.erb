@@ -47,7 +47,7 @@
             <% else %>
               <td>無効</td>
             <% end %>
-              <td><%= link_to "編集する", edit_admin_genre_path(genre.id) %></td>
+              <td><%= link_to "編集する", edit_admin_genre_path(genre.id), class: 'btn btn-default' %></td>
             </tr>
           <% end %>
         </tbody>

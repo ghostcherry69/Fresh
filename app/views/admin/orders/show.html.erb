@@ -50,7 +50,6 @@
               <td><%= ((ordered_product.product.price_excluding_tax * 1.1) .round * ordered_product.quantity).to_s(:delimited, delimiter: ',') %></td>
               <%= form_with(url: admin_ordered_product_path(ordered_product.id), method: :patch, local: true) do |f| %>
               <td>
-                <%= f.select :production_status, options_for_select(OrderedProduct.production_statuses.keys.map{|k| [t("enums.ordered_product.production_status.#{k}"), k]}, ordered_product.production_status) %>
               </td>
               <td><%= f.submit "更新" %></td>
               <% end %>

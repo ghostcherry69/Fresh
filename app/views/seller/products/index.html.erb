@@ -38,7 +38,7 @@
                   <td>販売停止中</td>
                 <% end %>
                 <td>
-                  <%= link_to "削除する", seller_product_path(product.id), method: :delete, "data-confirm" => "本当に削除しますか?" %>
+                  <%= link_to "削除する", seller_product_path(product.id), class: 'btn btn-danger', method: :delete, "data-confirm" => "本当に削除しますか?" %>
                 </td>
               </tr>
             <% end %>

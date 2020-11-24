@@ -34,7 +34,7 @@
               </td>
               <td><%= order.request_amount.to_s(:delimited, delimiter: ',') %>円</td>
               <td><%= order.order_status %></td>
-              <td><%= link_to "表示する", public_order_path(order.id) %></td>
+              <td><%= link_to "表示する", public_order_path(order.id), class: 'btn btn-default' %></td>
             </tr>
           <% end %>
         </tbody>

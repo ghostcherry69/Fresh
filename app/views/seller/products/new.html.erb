@@ -43,7 +43,7 @@
               <label>販売ステータス</label>
               <%= f.select :is_active, [['販売中', "true"], ['販売停止中', "false"]], include_blank: "選択して下さい" %><br>
 
-              <%= f.submit '新規登録' %>
+              <%= f.submit '新規登録', class: "button" %>
             </div>
           <% end %>
         </div>

@@ -2,8 +2,7 @@ class Seller::HomesController < ApplicationController
 
   def top
     @genres = Genre.all
-    @product = Product.limit(5)
-    @products = Product.all
+    @products = Product.all.page(params[:page]).reverse_order
   end
 
 end
