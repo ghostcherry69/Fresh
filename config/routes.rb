@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
   end
 
-  namespace :seller do
+  namespace :angler do
     get 'top' => 'homes#top'
     resources :ordered_products, only: [:update]
     resources :orders, only: [:index, :show, :update]

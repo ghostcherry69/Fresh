@@ -4,7 +4,7 @@
     <h2>商品一覧管理画面</h2>
 
       <div class="plus">
-        <%= link_to "+", new_seller_product_path %>
+        <%= link_to "+", new_angler_product_path %>
       </div>
 
         <table class="table table-striped">
@@ -24,7 +24,7 @@
               <tr>
                 <td><%= product.id %></td>
                 <td>
-                  <%= link_to seller_product_path(product.id) do %>
+                  <%= link_to angler_product_path(product.id) do %>
                     <%= product.name %>
                   <% end %>
                 </td>
@@ -38,7 +38,7 @@
                   <td>販売停止中</td>
                 <% end %>
                 <td>
-                  <%= link_to "削除する", seller_product_path(product.id), class: 'btn btn-danger', method: :delete, "data-confirm" => "本当に削除しますか?" %>
+                  <%= link_to "削除する", angler_product_path(product.id), class: 'btn btn-danger', method: :delete, "data-confirm" => "本当に削除しますか?" %>
                 </td>
               </tr>
             <% end %>

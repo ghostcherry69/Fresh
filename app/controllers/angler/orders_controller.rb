@@ -1,4 +1,4 @@
-class Seller::OrdersController < ApplicationController
+class Angler::OrdersController < ApplicationController
 
   before_action :authenticate_angler!
 

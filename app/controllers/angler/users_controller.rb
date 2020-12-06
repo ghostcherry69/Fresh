@@ -1,4 +1,4 @@
-class Seller::UsersController < ApplicationController
+class Angler::UsersController < ApplicationController
 
   before_action :authenticate_angler!
 

@@ -1,4 +1,4 @@
-class Seller::HomesController < ApplicationController
+class Angler::HomesController < ApplicationController
 
   def top
     @genres = Genre.all

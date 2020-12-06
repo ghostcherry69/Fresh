@@ -68,12 +68,41 @@ main{
   margin: 0 50px 0 50px;
 }
 
+.genre{
+  margin: 40px 0 0 0;
+  width: 150px;
+  border: solid 3px;
+  padding: 0.5em;
+  border-radius: 0.5em;
+}
+
+.genre-head{
+  width: 110px;
+  border-bottom: solid;
+  font-weight:bold;
+  padding-bottom: 5px;
+}
+
+.genre-list {
+  display: flex;
+  margin-top: 15px;
+  color: #666666;
+  font-weight:bold;
+}
+.genre-list:hover {
+  text-decoration: none;
+}
+
 .main-visual {
   width: 100%;
   height: 300px;
   background-image: url(img/mv2.jpg);
   background-size: cover ;
   background-position: center;
+}
+
+.main-text p{
+   margin-top: 20px;
 }
 
 .main-visual-text{
@@ -83,6 +112,45 @@ main{
   font-size: 80px;
   text-align: center;
   padding-top: 100px;
+}
+
+.main-content{
+  padding: 0 20px;
+  margin: 20px;
+  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .5);
+}
+
+.main-img{
+  padding-top: 10px;
+}
+
+.product-name{
+  padding-left: 5px;
+  color: black;
+  font-family: 'HGP行書体';
+  font-weight:bold;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.price_excluding_tax{
+  padding-left: 10px;
+  color: red;
+  font-family: 'HGP行書体';
+  font-weight:bold;
+  text-decoration: none;
+}
+
+.is_active{
+  padding-left: 10px;
+  color: black;
+  font-family: 'HGP行書体';
+  font-weight:bold;
+  text-decoration: none;
+}
+
+.home-link{
+  margin-bottom: 20px;
 }
 
 .sign-btn {
@@ -120,15 +188,6 @@ main{
   background: #ffffff;
 }
 
-
-.genre{
-  margin: 40px 0 0 0;
-}
-
-.genre-list{
-  text-decoration: none;
-}
-
 .product-index, .product-top{
   width: auto;
   margin: 0;
@@ -157,8 +216,34 @@ main{
   font-size: 50px;
 }
 
-.product-show{
-  margin: 100px 0 0 150px;
+.product-show-img{
+  margin-top: 100px;
+}
+
+.product-show-text{
+  margin-top: 100px;
+}
+
+.product-show-name{
+  font-family: 'HGP行書体';
+  font-weight:bold;
+  font-size: 25px;
+  padding: 0 0 20px 20px;
+}
+
+.product-show-explanation{
+  font-size: 15px;
+  padding: 0 0 20px 20px;
+}
+
+.product-show-price{
+  color: #DD0000;
+  font-size: 15px;
+  padding: 0 0 20px 20px;
+}
+
+.select{
+  margin-bottom: 20px;
 }
 
 .total_price{
@@ -169,10 +254,6 @@ main{
 
 .total_price string:nth-child(2){
   border-bottom: solid;
-}
-
-.main-content{
-  padding: 0 20px;
 }
 
 .thanks-p{
