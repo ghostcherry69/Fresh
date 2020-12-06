@@ -9,13 +9,13 @@
       <ul class="nav navbar-nav navbar-right">
         <% if angler_signed_in? %>
            <li class="header_list_item">
-            <%= link_to 'TOP', seller_top_path %>
+            <%= link_to 'TOP', angler_top_path %>
           </li>
           <li class="header_list_item">
-            <%= link_to '商品一覧', seller_products_path %>
+            <%= link_to '商品一覧', angler_products_path %>
           </li>
           <li class="header_list_item">
-            <%= link_to "注文履歴一覧", seller_orders_path(current_angler) %>
+            <%= link_to "注文履歴一覧", angler_orders_path(current_angler) %>
           </li>
           <li class="header_list_item">
             <%= link_to "ログアウト", destroy_angler_session_path, method: :delete %>
@@ -25,10 +25,10 @@
       <ul class="nav navbar-nav navbar-right">
         <% else %>
           <li class="header_list_item">
-            <%= link_to 'LOGO', seller_top_path %>
+            <%= link_to 'LOGO', angler_top_path %>
           </li>
           <li class="header_list_item">
-            <%= link_to "商品一覧", seller_products_path %>
+            <%= link_to "商品一覧", angler_products_path %>
           </li>
           <li class="header_list_item">
             <%= link_to "ログイン", new_angler_session_path %>

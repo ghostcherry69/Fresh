@@ -18,7 +18,7 @@
             <% total_count = 0 %>
           <tr>
             <td>
-              <%= link_to order.created_at, seller_order_path(order.id) %>
+              <%= link_to order.created_at, angler_order_path(order.id) %>
             </td>
               <td><%= order.user.name %></td>
               <td>

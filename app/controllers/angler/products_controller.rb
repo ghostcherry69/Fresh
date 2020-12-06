@@ -1,4 +1,4 @@
-class Seller::ProductsController < ApplicationController
+class Angler::ProductsController < ApplicationController
 
   before_action :authenticate_angler!
 
@@ -11,7 +11,7 @@ class Seller::ProductsController < ApplicationController
     @new_product.angler_id = current_angler.id
     if @new_product.save
       flash[:notice] ='商品が保存されました。'
-      redirect_to  seller_product_path(@new_product.id)
+      redirect_to  angler_product_path(@new_product.id)
     else
       render :new
     end
@@ -34,7 +34,7 @@ class Seller::ProductsController < ApplicationController
     @product = Product.find(params[:id])
     if @product.update(product_params)
     flash[:notice] = '商品内容の変更が保存されました'
-    redirect_to  seller_product_path(@product.id)
+    redirect_to  angler_product_path(@product.id)
     else
     render :edit
     end
@@ -44,7 +44,7 @@ class Seller::ProductsController < ApplicationController
     product = Product.find(params[:id])
     product.destroy
     flash[:notice] = "商品が削除されました"
-    redirect_to seller_products_path
+    redirect_to angler_products_path
   end
 
   private

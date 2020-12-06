@@ -3,7 +3,7 @@ class Public::ProductsController < ApplicationController
   def index
     @genres = Genre.all
     if params[:genre_id]
-       @products = Product.where(genre_id: params[:genre_id], is_active: true)
+       @products = Product.where(genre_id: params[:genre_id], is_active: true).page(params[:page]).reverse_order
        @genre = Genre.find(params[:genre_id])
     else
        @products = Product.where(is_active: true).page(params[:page]).reverse_order

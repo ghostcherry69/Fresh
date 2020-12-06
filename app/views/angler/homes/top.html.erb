@@ -1,4 +1,4 @@
-<%= render 'layouts/userheader' %>
+<%= render 'layouts/anglerheader' %>
 
   <div class="container">
     <div class="row">
@@ -15,7 +15,7 @@
           <div class="genre">
             <h4 class="genre-head">ジャンル検索</h4>
               <% @genres.each do |genre| %>
-                    <%= link_to genre.name, public_products_path(genre_id: genre.id), class: "genre-list" %>
+                    <%= link_to genre.name, angler_top_path(genre_id: genre.id), class: "genre-list" %>
               <% end %>
           </div>
         </div>
@@ -28,11 +28,10 @@
             </div>
           <% end %>
 
-          <h2>新商品</h2>
-            <div class="product-top">
-              <% @products.first(4).each do |product| %>
-                <% if product.is_active == true %>
-                  <%= link_to public_product_path(product.id) do %>
+            <h2>商品一覧</h2>
+              <div class="product-index">
+                <% @products.each do |product| %>
+                  <%= link_to angler_product_path(product.id) do %>
                     <div class="main-content">
                       <div class="main-img">
                           <%= attachment_image_tag product, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size: "100x100"%>
@@ -42,19 +41,26 @@
                           <%= product.name %>
                         </div>
                         <div class="price_excluding_tax">
-                          <%= product.price_excluding_tax.to_s(:delimited, delimiter: ',') %>円
+                          <%= product.price_excluding_tax.to_s(:delimited, delimiter: ',') %>
+                        </div>
+                        <div class="is_active">
+                          <% if product.is_active == true %>
+                            【販売中】
+                          <% else %>
+                            【販売停止中】
+                          <% end %>
                         </div>
                       </div>
                     </div>
                   <% end %>
                 <% end %>
-              <% end %>
-            </div>
-            <div class="home-link">
-              <br><%= link_to "もっと見る>", public_products_path, class: 'btn btn-default' %>
-            </div>
+              </div>
+              <div class="home-link">
+                <br><%= link_to "商品一覧管理画面へ", angler_products_path, class: 'btn btn-default' %>
+              </div>
+            <%= paginate @products %>
         </div>
     </main>
   </div>
 
-<%= render 'layouts/userfooter' %>
+<%= render 'layouts/anglerfooter' %>
