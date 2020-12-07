@@ -18,7 +18,7 @@
             <% total_count = 0 %>
           <tr>
             <td>
-              <%= link_to order.created_at, admin_order_path(order.id) %>
+              <%= link_to order.created_at.strftime('%Y/%m/%d'), admin_order_path(order.id) %>
             </td>
               <td><%= order.user.name %></td>
               <td>

@@ -23,7 +23,7 @@
 
               <label class="sr-only">商品画像</label>
               <%= attachment_image_tag @product, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size: "100x100" %>
-              <br><%= f.attachment_field :image %></br>
+              <br><%= f.attachment_field :image %>
             </div>
 
             <div class="col-xs-6">
