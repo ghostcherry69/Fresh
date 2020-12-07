@@ -17,26 +17,27 @@
           </div>
 
           <div class="col-xs-6">
-            <br>
-            <label>商品名</label>
+            <label class="product-show-label">【商品名】</label>
             <%= @product.name %>
             <br>
 
-            <label>商品説明</label>
+            <label class="product-show-label">【商品説明】</label>
             <%= @product.explanation %>
             <br>
 
-            <label>ジャンル</label>
+            <label class="product-show-label">【ジャンル】</label>
             <%= @product.genre.name %>
             <br>
 
-            <label>税込価格</label>
-            <%= ((@product.price_excluding_tax * 1.1) .round).to_s(:delimited, delimiter: ',') %>
-            <label>税抜価格</label>
+            <label class="product-show-label">【税抜価格】</label>
             <%= @product.price_excluding_tax.to_s(:delimited, delimiter: ',') %>円
             <br>
 
-            <label>販売ステータス</label>
+            <label class="product-show-label">【税込価格】</label>
+            <%= ((@product.price_excluding_tax * 1.1) .round).to_s(:delimited, delimiter: ',') %>円
+            <br>
+
+            <label class="product-show-label">【販売ステータス】</label>
             <% if @product.is_active == true %>
               販売中
             <% else %>
