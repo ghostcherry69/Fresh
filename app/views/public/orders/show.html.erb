@@ -2,75 +2,87 @@
 
   <main>
     <h2>注文履歴詳細</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>注文情報</th>
+            <th></th>
+          </tr>
+        </thead>
 
-      <p>注文情報</p>
-        <table class="table table-striped">
-          <tbody>
-            <tr>
-              <td>注文日</td>
-              <td><%= @order.created_at.strftime('%Y/%m/%d')%></td>
-            </tr>
-            <tr>
-              <td>配送先</td>
-              <td>
-                <%= @order.postal_code %><br>
-                <%= @order.street_address %><br>
-                <%= @order.name %>
-              </td>
-            </tr>
-            <tr>
-              <td>支払方法</td>
-              <td><%= @order.method_payment %></td>
-            </tr>
-            <tr>
-              <td>ステータス</td>
-              <td><%= @order.order_status %></td>
-            </tr>
-          </tbody>
-        </table>
+        <tbody>
+          <tr>
+            <td>注文日</td>
+            <td><%= @order.created_at.strftime('%Y/%m/%d')%></td>
+          </tr>
+          <tr>
+            <td>配送先</td>
+            <td>
+              <%= @order.postal_code %>
+              <%= @order.street_address %><br>
+              <%= @order.name %>
+            </td>
+          </tr>
+          <tr>
+            <td>支払方法</td>
+            <td><%= @order.method_payment %></td>
+          </tr>
+          <tr>
+            <td>ステータス</td>
+            <td><%= @order.order_status %></td>
+          </tr>
+        </tbody>
+      </table>
 
-        <p>請求情報</p>
-        <table class="table table-striped">
-          <tbody>
-              <tr>
-              <td>商品合計</td>
-              <td><%= @order.request_amount.to_s(:delimited, delimiter: ',') %></td>
-            </tr>
-            <tr>
-              <td>配送料</td>
-              <td>800</td>
-            </tr>
-            <tr>
-              <td>ご請求金額</td>
-              <td><%= @order.request_amount.to_s(:delimited, delimiter: ',') %></td>
-            </tr>
-          </tbody>
-        </table>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>請求情報</th>
+            <th></th>
+          </tr>
+        </thead>
 
-        <p>注文内容</p>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>商品</th>
-              <th>単価（税込み）</th>
-              <th>個数</th>
-              <th>小計</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @order_all.each do |order_all| %>
-            <tr>
-              <td><%= order_all.product.name %></td>
-              <td><%= order_all.purchase_price.to_s(:delimited, delimiter: ',') %></td>
-              <td><%= order_all.quantity %></td>
-              <td>
-                <%= (order_all.purchase_price * order_all.quantity).to_s(:delimited, delimiter: ',') %>
-              </td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-      <%= link_to "戻る", public_orders_path, class: 'btn btn-default' %>
+        <tbody>
+          <tr>
+            <td>商品合計</td>
+            <td><%= @order.request_amount.to_s(:delimited, delimiter: ',') %>円</td>
+          </tr>
+          <tr>
+            <td>配送料</td>
+            <td>800円</td>
+          </tr>
+          <tr>
+            <td>ご請求金額</td>
+            <td><%= @order.request_amount.to_s(:delimited, delimiter: ',') %>円</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="table order_detail">
+        <thead>
+          <tr>
+            <th>注文内容</th>
+            <th>商品</th>
+            <th>単価（税込み）</th>
+            <th>個数</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order_all.each do |order_all| %>
+          <tr>
+            <td></td>
+            <td><%= order_all.product.name %></td>
+            <td><%= order_all.purchase_price.to_s(:delimited, delimiter: ',') %>円</td>
+            <td><%= order_all.quantity %></td>
+            <td>
+              <%= (order_all.purchase_price * order_all.quantity).to_s(:delimited, delimiter: ',') %>円
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <%= link_to "戻る", public_orders_path, class: 'btn btn-default' %>
   </main>
 
 <%= render 'layouts/userfooter' %>

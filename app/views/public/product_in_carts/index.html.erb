@@ -14,7 +14,7 @@
       <% end %>
 
       <br>
-      <%= link_to "カートを空にする", public_empty_path, class: "btn btn-danger", method: :delete, "data-confirm" => "本当にカートを空にしますか？" %>
+      <%= link_to "カートを空にする", public_empty_path, class: 'btn btn-default', method: :delete, "data-confirm" => "本当にカートを空にしますか？" %>
 
         <table class="table table-striped">
           <thead>
@@ -36,7 +36,7 @@
               <%= form_with model: [:public, product_in_cart], local: true do |f| %>
                 <td>
                   <%= f.select :quantity, @quantity_array %>
-                  <%= f.submit "変更" %>
+                  <%= f.submit "変更", class: 'btn btn-default' %>
                 </td>
               <% end %>
                 <td>
